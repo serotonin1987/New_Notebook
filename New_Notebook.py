@@ -11,7 +11,7 @@ class NotepadApp:
 
         self.current_file = None
         self.current_theme = "light"
-        self.neon_color = "#00ff00"  # по умолчанию зелёный неон
+        self.neon_color = "#00ff00"
 
         self.create_widgets()
         self.create_text_area()
@@ -104,7 +104,7 @@ class NotepadApp:
 
     def apply_theme(self, theme_name, neon_color=None):
         self.current_theme = theme_name
-        self.neon_color = neon_color if neon_color else "#00ff00"  # по умолчанию зелёный
+        self.neon_color = neon_color if neon_color else "#00ff00"
 
         if theme_name == "light":
             bg, fg, btn_bg = "white", "black", "lightgray"
@@ -113,7 +113,6 @@ class NotepadApp:
         elif theme_name == "neon":
             bg, fg, btn_bg = "#000000", self.neon_color, "#111111"
 
-        # Обновление внешнего вида
         self.window.config(bg=bg)
         self.text_area.config(bg=bg, fg=fg, insertbackground=fg)
 
@@ -123,7 +122,7 @@ class NotepadApp:
         for widget in self.theme_frame.winfo_children() + self.file_frame.winfo_children():
             widget.config(bg=btn_bg, fg=fg, activebackground=bg, activeforeground=fg)
 
-        self.text_area.tag_delete("color")  # убрать старые стили
+        self.text_area.tag_delete("color")
 
         if theme_name == "neon":
             self.colorize_text(self.neon_color)
